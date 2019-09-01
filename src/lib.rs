@@ -22,7 +22,7 @@
 #![warn(missing_docs, missing_doc_code_examples, unreachable_pub)]
 // #![cfg_attr(test, deny(warnings))]
 
-use log::{LevelFilter, Record, logger};
+use log::{logger, LevelFilter, Record};
 
 use std::fmt;
 
@@ -73,7 +73,7 @@ macro_rules! log {
 macro_rules! log_impl {
     // End of macro input
     (target: $target:expr, $lvl:expr, ($($arg:expr),*)) => {
-        let lvl = log::Level::Info;
+        let lvl = $lvl;
         if lvl <= $crate::STATIC_MAX_LEVEL && lvl <= $crate::max_level() {
             $crate::__private_api_log(
                 __log_format_args!($($arg),*),
@@ -229,9 +229,8 @@ pub fn __private_api_log(
     args: fmt::Arguments<'_>,
     level: Level,
     &(target, module_path, file, line): &(&str, &'static str, &'static str, u32),
-    kvs: Option<&[(&str, &str)]>
+    kvs: Option<&[(&str, &str)]>,
 ) {
-
     // Ideally there would be a `From` impl available for this.
     struct KeyValues<'a> {
         inner: &'a [(&'a str, &'a str)],
