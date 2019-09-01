@@ -9,5 +9,6 @@ fn main() {
     info!("hello {}", "cats", {
         cat_1: "chashu",
         cat_2: "nori",
+        cat_count: 2,
     });
 }

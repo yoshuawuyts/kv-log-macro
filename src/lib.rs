@@ -92,7 +92,7 @@ macro_rules! log_impl {
                 __log_format_args!($($arg),*),
                 lvl,
                 &(__log_module_path!(), __log_module_path!(), __log_file!(), __log_line!()),
-                Some(&[$((__log_stringify!($key), $value)),*])
+                Some(&[$((__log_stringify!($key), &$value)),*])
             );
         }
     };
@@ -229,35 +229,8 @@ pub fn __private_api_log(
     args: fmt::Arguments<'_>,
     level: Level,
     &(target, module_path, file, line): &(&str, &'static str, &'static str, u32),
-    kvs: Option<&[(&str, &str)]>,
+    kvs: Option<&[(&str, &dyn log::kv::ToValue)]>,
 ) {
-    // Ideally there would be a `From` impl available for this.
-    struct KeyValues<'a> {
-        inner: &'a [(&'a str, &'a str)],
-    }
-
-    impl<'a> log::kv::Source for KeyValues<'a> {
-        fn visit<'kvs>(
-            &'kvs self,
-            visitor: &mut dyn log::kv::Visitor<'kvs>,
-        ) -> Result<(), log::kv::Error> {
-            for pair in self.inner {
-                visitor.visit_pair(pair.0.into(), pair.1.into())?;
-            }
-            Ok(())
-        }
-
-        #[inline]
-        fn count(&self) -> usize {
-            self.inner.len()
-        }
-    }
-
-    let kvs = match kvs {
-        Some(kvs) => Some(KeyValues { inner: kvs }),
-        None => None,
-    };
-
     logger().log(
         &Record::builder()
             .args(args)
