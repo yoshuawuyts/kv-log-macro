@@ -101,21 +101,27 @@ macro_rules! log_impl {
     };
 }
 
-// /// Logs a message at the trace level.
-// #[macro_export(local_inner_macros)]
-// macro_rules! trace {
-//     ($($arg:tt)+) => (
-//         log!($crate::Level::Trace, $($arg)+);
-//     )
-// }
+/// Logs a message at the trace level.
+#[macro_export(local_inner_macros)]
+macro_rules! trace {
+    (target: $target:expr, $($arg:tt)+) => (
+        log!(target: $target, $crate::Level::Trace, $($arg)+);
+    );
+    ($($arg:tt)+) => (
+        log!($crate::Level::Trace, $($arg)+);
+    )
+}
 
-// /// Logs a message at the debug level.
-// #[macro_export(local_inner_macros)]
-// macro_rules! debug {
-//     ($($arg:tt)+) => (
-//         log!($crate::Level::Debug, $($arg)+);
-//     )
-// }
+/// Logs a message at the debug level.
+#[macro_export(local_inner_macros)]
+macro_rules! debug {
+    (target: $target:expr, $($arg:tt)+) => (
+        log!(target: $target, $crate::Level::Debug, $($arg)+);
+    );
+    ($($arg:tt)+) => (
+        log!($crate::Level::Debug, $($arg)+);
+    )
+}
 
 /// Logs a message at the info level.
 #[macro_export(local_inner_macros)]
@@ -128,21 +134,27 @@ macro_rules! info {
     )
 }
 
-// /// Logs a message at the warn level.
-// #[macro_export(local_inner_macros)]
-// macro_rules! warn {
-//     ($($arg:tt)+) => (
-//         log!($crate::Level::Warn, $($arg)+);
-//     )
-// }
+/// Logs a message at the warn level.
+#[macro_export(local_inner_macros)]
+macro_rules! warn {
+    (target: $target:expr, $($arg:tt)+) => (
+        log!(target: $target, $crate::Level::Warn, $($arg)+);
+    );
+    ($($arg:tt)+) => (
+        log!($crate::Level::Warn, $($arg)+);
+    )
+}
 
-// /// Logs a message at the error level.
-// #[macro_export(local_inner_macros)]
-// macro_rules! error {
-//     ($($arg:tt)+) => (
-//         log!($crate::Level::Error, $($arg)+);
-//     )
-// }
+/// Logs a message at the error level.
+#[macro_export(local_inner_macros)]
+macro_rules! error {
+    (target: $target:expr, $($arg:tt)+) => (
+        log!(target: $target, $crate::Level::Error, $($arg)+);
+    );
+    ($($arg:tt)+) => (
+        log!($crate::Level::Error, $($arg)+);
+    )
+}
 
 /// Determines if a message logged at the specified level in that module will
 /// be logged.
