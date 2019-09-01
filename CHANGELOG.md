@@ -1,3 +1,19 @@
+## 2019-09-01, Version 1.0.4
+### Commits
+- [[`9c938867f5`](https://github.com/yoshuawuyts/kv-log-macro/commit/9c938867f56dd7ec4642301e726493967f5057a3)] (cargo-release) version 1.0.4 (Yoshua Wuyts)
+- [[`4d1cd07382`](https://github.com/yoshuawuyts/kv-log-macro/commit/4d1cd0738248dfe73aab97f04c8c741593e32ad6)] use ToValue as the bound for captured values (#1) (Ashley Mannix)
+- [[`7cc2af3db3`](https://github.com/yoshuawuyts/kv-log-macro/commit/7cc2af3db316f1849cd06a810ab5b5285f864e88)] Update changelog (Yoshua Wuyts)
+
+### Stats
+```diff
+ CHANGELOG.md     | 38 ++++++++++++++++++++++++++++++++++++++
+ Cargo.toml       |  2 +-
+ examples/main.rs |  1 +
+ src/lib.rs       | 31 ++-----------------------------
+ 4 files changed, 42 insertions(+), 30 deletions(-)
+```
+
+
 ## 2019-09-01, Version 1.0.3
 ### Commits
 - [[`5179f8418a`](https://github.com/yoshuawuyts/kv-log-macro/commit/5179f8418aee109e2131034d2d8675944ec8ca38)] (cargo-release) version 1.0.3 (Yoshua Wuyts)
