@@ -30,7 +30,7 @@ use std::fmt;
 pub use log::Level;
 
 /// The statically resolved maximum log level.
-pub const STATIC_MAX_LEVEL: LevelFilter = LevelFilter::Debug;
+pub const STATIC_MAX_LEVEL: LevelFilter = log::STATIC_MAX_LEVEL;
 
 /// Returns the current maximum log level.
 #[inline]
