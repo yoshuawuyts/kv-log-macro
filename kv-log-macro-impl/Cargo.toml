@@ -1,0 +1,16 @@
+[package]
+name = "kv-log-macro-impl"
+version = "0.0.5"
+authors = ["David Tolnay <dtolnay@gmail.com>"]
+license = "MIT OR Apache-2.0"
+description = "Demo of proc-macro-hack"
+repository = "https://github.com/dtolnay/proc-macro-hack"
+edition = "2018"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+proc-macro-hack = "0.5"
+quote = "1.0"
+syn = { version = "1.0", features = ["full", "extra-traits"] }
