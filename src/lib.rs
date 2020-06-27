@@ -43,8 +43,10 @@ fn __private_api_log(
 
 use proc_macro_hack::proc_macro_hack;
 
-/// Add one to an expression.
-///
-/// (Documentation goes here on the re-export, not in the other crate.)
+/// Log info
+#[proc_macro_hack]
+pub use kv_log_macro_impl::log;
+
+/// Log info
 #[proc_macro_hack]
 pub use kv_log_macro_impl::info;
