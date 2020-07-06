@@ -72,7 +72,7 @@ macro_rules! log {
 #[doc(hidden)]
 macro_rules! log_impl {
     // End of macro input
-    (target: $target:expr, $lvl:expr, ($($arg:expr),*)) => {
+    (target: $target:expr, $lvl:expr, ($($arg:expr),*)) => {{
         let lvl = $lvl;
         if lvl <= $crate::STATIC_MAX_LEVEL && lvl <= $crate::max_level() {
             $crate::__private_api_log(
@@ -82,10 +82,10 @@ macro_rules! log_impl {
                 None,
             );
         }
-    };
+    }};
 
     // // Trailing k-v pairs containing no trailing comma
-    (target: $target:expr, $lvl:expr, ($($arg:expr),*) { $($key:ident : $value:expr),* }) => {
+    (target: $target:expr, $lvl:expr, ($($arg:expr),*) { $($key:ident : $value:expr),* }) => {{
         if $lvl <= $crate::STATIC_MAX_LEVEL && $lvl <= $crate::max_level() {
             $crate::__private_api_log(
                 __log_format_args!($($arg),*),
@@ -94,7 +94,7 @@ macro_rules! log_impl {
                 Some(&[$((__log_stringify!($key), &$value)),*])
             );
         }
-    };
+    }};
 
     // Trailing k-v pairs with trailing comma
     (target: $target:expr, $lvl:expr, ($($e:expr),*) { $($key:ident : $value:expr,)* }) => {
