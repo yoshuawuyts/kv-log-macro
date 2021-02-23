@@ -90,7 +90,7 @@ macro_rules! log_impl {
             $crate::__private_api_log(
                 __log_format_args!($($arg),*),
                 $lvl,
-                &(__log_module_path!(), __log_module_path!(), __log_file!(), __log_line!()),
+                &($target, __log_module_path!(), __log_file!(), __log_line!()),
                 Some(&[$((__log_stringify!($key), &$value)),*])
             );
         }
